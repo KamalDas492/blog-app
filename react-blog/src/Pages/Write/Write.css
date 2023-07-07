@@ -1,0 +1,71 @@
+#fileInput{
+    display: none;
+}
+.write{
+    padding-top: 30px;
+    
+}
+.writeIcon{
+    font-size: 25px;
+    margin-right: 10px;
+    color: gray;
+}
+.writeFormGroup{
+    width: 80%;
+    margin: auto;
+}
+
+.writeInput{
+    font-size: 30px;
+    border: none;
+    padding: 20px;
+    border-radius: 15px;
+    width:100%;
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+    margin-top: 20px;
+    border: 2px solid #ccc;
+}
+.writeInput:focus{
+    outline: none;
+    background-color: aliceblue;
+}
+.writeForm{
+    width: 80vw;
+    margin: auto;
+}
+.writeText{
+    font-size: 20px;
+    height:80vh;
+    width: 100%;
+}
+.writeSubmit{
+    margin: auto;
+    margin-top: 30px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 30px;
+    display: block;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+#square-area {
+    width: 80%;
+    height: 300px;
+    margin: auto;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-color: #f4f4f4;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+

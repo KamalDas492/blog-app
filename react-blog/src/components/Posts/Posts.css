@@ -1,0 +1,14 @@
+.posts{
+    
+    margin: 40px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .posts {
+        margin: 1.5rem 0.8rem;
+    }
+    
+}

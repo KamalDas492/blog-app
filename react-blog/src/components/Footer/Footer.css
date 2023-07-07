@@ -1,0 +1,39 @@
+.footer{
+    text-align: center;
+    padding: 40px 0 20px 0;
+    font-family: 'Josefin Sans', sans-serif;
+    color:#ccc;
+    background-color: #f4f4f4;
+}
+.subscribeInput {
+    background-color: #f4f4f4;
+    border: 2px solid #ccc;
+    padding:8px 10px;
+    width:20%;
+    font-size: 15px;
+    font-family: 'Varela Round', sans-serif;
+    outline: none;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+.subscribeHeader {
+    color: black;
+    margin-bottom: 10px;
+}
+
+.subscribeDetails {
+    margin-bottom: 20px;
+    color: #444;
+}
+.subscribeBtn {
+    background-color: #444;
+    padding:8px 10px;
+    text-align: center;
+    border: 2px solid #444;
+    outline:none;
+    color:#fff;
+    font-family: 'Varela Round', sans-serif;
+    cursor: pointer;
+    font-size: 15px;
+}

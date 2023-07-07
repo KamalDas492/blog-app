@@ -1,0 +1,35 @@
+
+.one{
+    font-weight: 500;
+    font-size: 100px;
+    color: aliceblue;
+    font-family: 'Cookie', cursive;
+}
+.two{
+    font-size: 20px;
+    color: white;
+    font-family: 'Lora', serif;
+    font-weight: 500;
+}
+.header {
+    height: 35vw;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-image: url("https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=");
+}
+@media only screen and (max-width: 1080px) {
+    .one {
+        font-size: 50px;
+    }
+    .two {
+        font-size: 12px;
+    }
+    .header {
+        height:60vw;
+    }
+}

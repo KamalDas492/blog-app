@@ -1,0 +1,158 @@
+
+* {
+    font-family: 'Josefin Sans', sans-serif;
+}
+.wrapper-css{
+    padding: 20px 20px;
+    display: flex;
+    
+}
+.logoimg{
+    height: 32px;
+    margin-right: 5px;
+}
+.leftarea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    flex: 2;
+    order:1;
+    
+}
+.topIcon{
+    font-style: 20px;
+    margin-right: 20px;
+    color:#444;
+    cursor: pointer;
+}
+.topImg {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.centerarea{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 5;
+    order:2;
+    
+
+}
+.centerarea div{
+    margin-right: 35px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+.rightarea{
+    flex: 4;
+    display: flex;
+    align-items: center;
+    order:3;
+}
+.searchinput{
+    height:1.2rem;
+    width:85%;
+    padding: 6px 15px;
+    border-radius: 50px;
+    border:none;
+    background: #f4f4f4;
+    font-size: 0.75rem;
+    box-sizing: content-box;
+}
+.searchbox{
+    width:70%;
+    margin-left:3rem;
+    display: flex;
+}
+.searchinput:focus{
+    outline: none;
+}
+.searchbox .searchbtn {
+    position: relative;
+    top:8px;
+    right:10%;
+    font-size: 0.9rem;
+}
+.acc-icons{
+    margin-right: 8px;
+    font-size: 0.8rem;
+}
+.acc-text{
+    font-size: 0.75rem;
+}
+.account-area{
+    display: flex;
+    flex:1;
+    align-items: center;
+    order:4;
+}
+.account{
+    flex:6;
+
+}
+.cart{
+    text-align: center;
+    flex:6;
+}
+.right-mobile{
+    display:none;
+}
+.loginbtn {
+    
+    color: #444;
+   
+    cursor: pointer;
+}
+@media only screen and (max-width: 1080px) {
+    .navcontainer{
+        height:140px;
+    }
+    
+    .centerarea{
+        display: none;
+    }
+    .rightarea{
+        display:none;
+    }
+    .right-mobile{
+        display: block;
+    }
+    .searchbox{
+        width:90%;
+        margin-left:6%;
+    }
+    .searchinput{
+        width:100%;
+    }
+    .account{
+       
+        text-align:right;
+    }
+    
+    .leftarea{
+        flex: 4;
+    }
+    .account-area{
+        flex:7;
+    }
+    
+    .logoimg{
+        height:5.5vw;
+    }
+    .acc-text{
+        font-size: 3vw;
+    }
+    .acc-icons{
+        font-size: 2.8vw;
+    }
+    .searchinput{
+        height:6vw;
+    }
+    .searchbtn{
+        font-size: 4.6vw;
+    }
+}

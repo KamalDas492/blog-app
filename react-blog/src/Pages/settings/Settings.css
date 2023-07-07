@@ -1,0 +1,82 @@
+.settings{
+    display: flex;
+}
+.settingsWrapper {
+    flex: 9;
+    padding-top: 100px;
+    
+}
+#FileInput{
+    display: none;
+}
+.settingsForm {
+    display: flex;
+    flex-direction:column;
+    
+}
+.settingsForm > input{
+    background-color: #f4f4f4;
+    border: 2px solid #ccc;
+    padding:12px 10px;
+    width:22%;
+    border-radius:25px;
+    display: block;
+    font-family: 'Varela Round', sans-serif;
+    outline: none;
+    color:#444;
+    margin: auto;
+    margin-top: 10px;
+    
+}
+.settingsForm > label {
+    font-size: 20px;
+    margin-bottom: 5px;
+    
+}
+.settingsSubmit{
+    width:100px;
+    align-self: center;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: none;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.settingsPP{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.settingsPImg{
+    color: #444;
+    font-size: 100px;
+    border-radius: 50px;
+    margin-bottom: 15px;
+}
+.settingsPP > label {
+    display: flex;
+    flex-direction: row;
+    font-size: 17px;
+    font-family: 'Varela Round', sans-serif;
+    cursor: pointer;
+}
+.settingsTitleDelete{
+    color:#CF0A0A;
+    display: block;
+    position: absolute;
+    left:60%;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+  
+  .image-container img {
+    height: 100px;
+    width: 100px;
+    border-radius: 60px;
+  }
