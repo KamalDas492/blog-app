@@ -10,7 +10,13 @@ import {
 
 function Topbar() {
   const [user, setUser] = useState(null)
-  const [profileImg, setProfImg] = useState("")
+  const [profileImg, setProfImg] = useState("https://cdn-icons-png.flaticon.com/512/1144/1144760.png")
+  const [isExpanded, setIsExpanded] = useState(false);
+  const PF = "http://localhost:8000/Images/"
+  const toggleList = () => {
+    setIsExpanded(!isExpanded);
+  };
+  
   useEffect(() =>{
     const fetchUser = async ()=> {
       //console.log("request");
@@ -19,10 +25,18 @@ function Topbar() {
       if(res.status === 200) {
         setUser(res.data.user)
         //console.log(res.data.user);
+        
       }
     }
     fetchUser();
   },[])
+  useEffect(() => {
+    if (user && user.profilePic !== "") {
+      setProfImg(PF + user.profilePic);
+    }
+  }, [user]);
+  
+
     return (
         <div className='navcontainer'>
       <div className='wrapper-css'>
@@ -42,11 +56,21 @@ function Topbar() {
       
       <div className='account-area'>
         {user && 
-          <div className='account'>
+          (<div className='account'>
             <span><i className="acc-icons fa fa-user-o" aria-hidden="true"></i>
             </span>
-            <img className="topImg" src = "https://m.cricbuzz.com/a/img/v1/192x192/i1/c244980/virat-kohli.jpg" alt="Profile"/>
+            <img className="topImg" onClick={toggleList} src = {profileImg} alt="Profile"/>
+            {isExpanded && (
+          <div className="dropdown-menu">
+          <ul>
+            <li><Link to={`/settings/${user._id}`} className='link-style'> Settings</Link></li>
+            <li>My Posts</li>
+            <li>Logout</li>
+          </ul> 
+          </div>
+          )}
           </div>  
+          )
         }  
         {!user && <Link to = "/login" className="link-style"><span className = "loginbtn">Login</span></Link>}
       </div>

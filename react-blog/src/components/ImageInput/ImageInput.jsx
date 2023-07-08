@@ -33,7 +33,7 @@ const ImageInput = ({ onImageChange }) => {
       onDragOver={handleDragOver}
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      {isElementVisible && <label htmlFor="img_upload" className="dragAndDrop">Drag and drop an image here</label>}
+      {isElementVisible && <label htmlFor="img_upload" className="dragAndDrop">Drag and drop or Select an image</label>}
       <input id="img_upload" type="file" onChange={handleInputChange} style={{ display: 'none' }} accept="image/*" />
     </div>
   );
