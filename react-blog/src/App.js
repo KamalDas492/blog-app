@@ -1,6 +1,6 @@
 
 import Home from "./Pages/Home/Home.jsx";
-import Topbar from "./components/TopBar/Topbar.jsx"
+
 import Single from "./Pages/single/Single.jsx"
 import Write from "./Pages/Write/Write.jsx";
 import Settings from "./Pages/settings/Settings.jsx";
@@ -17,7 +17,7 @@ function App() {
  
   return (
     <Router>
-      <Topbar />
+      
       <Routes>
         <Route exact path='/' element={<Home />}></Route>
         <Route  path='/register' element={<Register />}></Route>

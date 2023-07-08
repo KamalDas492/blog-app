@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./singlePost.css"
 import { useLocation, Link } from 'react-router-dom'
 import axios from "axios"
+import Topbar from '../TopBar/Topbar';
 export default function SinglePost() {
   const postPath = useLocation();
   const id = postPath.pathname.split("/")[2];
@@ -20,13 +21,17 @@ export default function SinglePost() {
     textDecoration: 'none',
     color: 'inherit',
   };
+  const PF = "http://localhost:8000/Images/"
   return (
+    <div>
+      <Topbar />
+    
     <div className='singlePost'>
       <div className='singlePostWrapper'>
         {post.photo && 
           <img
             className='singlePostImg'
-            src = {post.photo}
+            src = {PF + post.photo}
             alt = "postImg"
           />
         }
@@ -46,6 +51,7 @@ export default function SinglePost() {
           {post.description}
           </p>
       </div>
+    </div>
     </div>
   )
 }

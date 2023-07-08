@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from "axios"
 import "./Topbar.css"
 import {
     BrowserRouter as Router,
@@ -8,8 +9,20 @@ import {
   } from 'react-router-dom';
 
 function Topbar() {
-  //const { user } = useContext(UserContext);
-  const user = null;
+  const [user, setUser] = useState(null)
+  const [profileImg, setProfImg] = useState("")
+  useEffect(() =>{
+    const fetchUser = async ()=> {
+      //console.log("request");
+      const res = await axios.get("/user/user_info")
+      
+      if(res.status === 200) {
+        setUser(res.data.user)
+        //console.log(res.data.user);
+      }
+    }
+    fetchUser();
+  },[])
     return (
         <div className='navcontainer'>
       <div className='wrapper-css'>

@@ -1,25 +1,29 @@
 import React, { useState } from 'react';
 
-const ImageInput = () => {
+const ImageInput = ({ onImageChange }) => {
   const [backgroundImage, setBackgroundImage] = useState('');
   const [isElementVisible, setElementVisible] = useState(true);
 
   const handleDrop = (event) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      setBackgroundImage(reader.result);
-    };
-
-    reader.readAsDataURL(file);
-    setElementVisible(false);
-    document.getElementById("square-area").style.border = "none";
+    handleImageFile(file);
   };
 
   const handleDragOver = (event) => {
     event.preventDefault();
+  };
+
+  const handleInputChange = (event) => {
+    const file = event.target.files[0];
+    handleImageFile(file);
+  };
+
+  const handleImageFile = (file) => {
+    setBackgroundImage(URL.createObjectURL(file));
+    onImageChange(file); // Pass the File object to the parent component
+    setElementVisible(false);
+    document.getElementById('square-area').style.border = 'none';
   };
 
   return (
@@ -29,7 +33,8 @@ const ImageInput = () => {
       onDragOver={handleDragOver}
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-     {isElementVisible &&  <p className = "dragAndDrop">Drag and drop an image here</p>}
+      {isElementVisible && <label htmlFor="img_upload" className="dragAndDrop">Drag and drop an image here</label>}
+      <input id="img_upload" type="file" onChange={handleInputChange} style={{ display: 'none' }} accept="image/*" />
     </div>
   );
 };

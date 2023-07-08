@@ -10,10 +10,12 @@ const userDetailRoute = require("./util/getUser")
 const multer = require("multer")
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const path = require("path");
+
 
 dotenv.config();
 app.use(express.json())
-
+app.use("/Images", express.static(path.join(__dirname, "/Images")))
 mongoose.connect(process.env.MONGO_URL)
 .then(console.log("Connected to MongoDB"))
 .catch((err) => console.log(err));
@@ -23,14 +25,19 @@ const storage = multer.diskStorage({
         cb(null, 'Images'); 
       },
       filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, file.fieldname + '-' + uniqueSuffix + '.' + file.originalname.split('.').pop());
+        //const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        //file.fieldname + '-' + uniqueSuffix + '.' + file.originalname.split('.').pop()
+        cb(null, req.body.name);
       }
 })
-const upload = multer({storage: storage});
+const upload = multer({storage: storage, limits: {
+  fieldNameSize: 100, // Adjust the maximum field name size
+  fieldSize: 1024 * 1024 * 10, // Adjust the maximum field data size (e.g., 5MB)
+},});
 
-app.post("/blog/upload", upload.single("IMG"), (req, res) => {
-    res.stblog/(200).json("Image has been uploaded");
+app.post("/blog/upload", upload.single("img"), (req, res) => {
+  //const imagePath = path.join("../../../../backend/Images", req.file.filename);
+  res.status(200).json("File uploaded successfully");
 })
 
 app.use("/blog/auth", authRoute) 
@@ -40,11 +47,8 @@ app.use("/blog/category", catRoute)
 app.use("/blog/api", userDetailRoute) 
 
 app.use(cookieParser());
-app.use(session({
-  secret: process.env.TOKEN_KEY,
-  resave: false,
-  saveUninitialized: false,
-}));
+
+
 
 const allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', "http://localhost:3000");

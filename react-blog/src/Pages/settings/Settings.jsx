@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./Settings.css"
-import Sidebar from "../../components/Sidebar/Sidebar"
+import Topbar from "../../components/TopBar/Topbar"
 export default function Settings() {
 
       const [imageSrc, setImageSrc] = useState('');
@@ -23,6 +23,8 @@ export default function Settings() {
       };
 
   return (
+    <div>
+    <Topbar />
     <div className='settings'>
         <div className='settingsWrapper'>
             <div className='settingsTitle'>
@@ -47,6 +49,7 @@ export default function Settings() {
             </form>
         </div>
         
+    </div>
     </div>
   )
 }

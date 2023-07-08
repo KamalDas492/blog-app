@@ -5,6 +5,7 @@ import "./Home.css"
 import axios from "axios"
 import { useLocation } from 'react-router-dom'
 import Footer from "../../components/Footer/Footer";
+import Topbar from '../../components/TopBar/Topbar'
 
 
 
@@ -21,6 +22,7 @@ export default function Home() {
   }, [search])
   return (
     <div>
+    <Topbar />
       <Header />
       <div className='Home'>
       

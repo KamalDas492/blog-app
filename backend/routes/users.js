@@ -1,9 +1,27 @@
 const router = require("express").Router();
 const User = require("../models/Users");
 const bcrypt = require("bcrypt");
-
+const authMiddleware = require("../util/authMiddleware")
 //Get account details
-//router.get("/:id", authMiddleware, async (req, res) => {})
+router.get("/user_info", authMiddleware, async (req, res) => {
+    //console.log(req.headers.cookie);
+    try {
+        const user = req.user;
+        if(user) {
+            try {
+                const userInfo = await User.findOne({_id: user});
+                res.status(200).json({user:userInfo, message:"Success"})
+            } catch (err){
+                res.status(500).json(err);
+            }
+        
+        } else {
+            res.status(401).json({user: null, message:"Unauthorized access"})
+        }
+    } catch (error) {
+        res.status(500).json( {user: null, message: 'Error retrieving user information' });
+    }
+})
 //Update account
 router.put("/:id", async (req, res) => {
     if(req.body.userId === req.params.id) {
