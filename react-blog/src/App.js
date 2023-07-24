@@ -12,6 +12,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import MyPosts from "./components/MyPosts/MyPosts.jsx";
 
 function App() {
  
@@ -23,6 +24,7 @@ function App() {
         <Route  path='/register' element={<Register />}></Route>
         <Route  path='/login' element={<Login />}></Route>
         <Route  path='/settings/:id' element={<Settings />}></Route>
+        <Route  path='/myposts' element={<MyPosts />}></Route>
         <Route  path='/write' element={<Write />}></Route>
         <Route  path='/posts/:id' element={<Single />}></Route>
       </Routes>

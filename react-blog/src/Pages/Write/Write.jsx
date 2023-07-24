@@ -10,6 +10,7 @@ export default function Write() {
   const [title, setTitle] = useState("")
   const [desc, setDesc] = useState("")
   const [file, setFile] = useState(null)
+  const [cat, setCategory] = useState(null)
   const [user, setUser] = useState(null)
   const navigate = useNavigate();
 
@@ -25,6 +26,7 @@ export default function Write() {
     }
     fetchUser();
   },[])
+  
   const handleImageChange = (image) => {
     setFile(image);
   };
@@ -37,6 +39,16 @@ export default function Write() {
         username: user.username,
         title: title,
         description: desc
+      }
+      if(cat) {
+        newPost.category = cat.toLowerCase();
+        try {
+          const resp = await axios.post("/category", {
+            name: cat.toLowerCase()
+          })
+        } catch (err) {
+          console.log(err);
+        }
       }
       if(file) {
         const data = new FormData();
@@ -73,6 +85,7 @@ export default function Write() {
         <ImageInput onImageChange={handleImageChange} />
             <div className='writeFormGroup'>
                 <input type="text" placeholder='Title' className='writeInput' autoFocus={true} onChange={e=>setTitle(e.target.value)}></input>
+                <input type="text" placeholder='Category' className='writeInput' onChange={e=>setCategory(e.target.value)}></input>
             </div>
             <div className='writeFormGroup'>
               <textarea 

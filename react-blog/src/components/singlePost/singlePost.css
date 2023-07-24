@@ -1,6 +1,9 @@
+.Single-Post{
+    width: 100%;
+}
 .singlePost {
     width:80%;
-    margin: auto;
+    margin: 0 auto;
 }
 .singlePostWrapper {
     padding:20px;
@@ -31,10 +34,34 @@
     justify-content: space-between;
     font-size: 16px;
     font-family: 'Varela Round', sans-serif;
-    color: #E6D2AA;
+    color: #4F4557;
 }
 .PostDesc {
     font-family: 'Varela Round', sans-serif;
     font-size: 18px;
     color:#6B728E;
 }
+.loader-singlepost{
+    padding-top: 8rem;
+    width: fit-content;
+    margin: auto;
+}
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-top: 4px solid black; 
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

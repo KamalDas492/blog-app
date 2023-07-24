@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { UserContext } from '../../context/Context';
 import "./Register.css"
 import axios from "axios"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Register() {
   
@@ -44,7 +44,7 @@ export default function Register() {
       
       <input type="password" className="LoginInput" placeholder="Password" onChange={e=>setPassword(e.target.value)}/>
       <input type="submit" value="Register" className="LoginSubmit"/>
-      <h5 className = "LoginForgot">Login here</h5>
+      <h5 className = "LoginForgot"><Link to={`/login`} className='link-style'>Login here</Link></h5>
     </form>
     </div>
   )

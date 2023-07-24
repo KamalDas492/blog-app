@@ -2,7 +2,7 @@
 import React, { useState, useContext } from 'react'
 import "./Login.css"
 import axios from "axios"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [identifier, setIdentifier] = useState("");
@@ -40,6 +40,7 @@ export default function Login() {
       <input type="password" className="LoginInput" placeholder="Password" onChange={e=>setPassword(e.target.value)}/>
       <input type="submit" value="Log in" className="LoginSubmit"/>
       <h5 className = "LoginForgot">Forgot password?</h5>
+      <h5 className = "LoginForgot"><Link to={`/register`} className='link-style'>Register</Link></h5>
     </form>
     </div>
   )

@@ -69,17 +69,23 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
     const user = req.query.user;
     const category = req.query.cat;
+    
     try {
         let posts;
-        if(user && category) {
-            posts = await Post.find({username: user, category: category});
-        } else if(user) {
-            posts = await Post.find({username: user});
-        } else if(category) {
-            posts = await Post.find({category: category});
-        } else { 
+        if(user === undefined && category === undefined) {
             posts = await Post.find();
+            
+        } else if(user !== undefined && category === undefined) {
+            posts = await Post.find({username: user});
+            
+        } else if(category !== undefined && user === undefined) {
+            posts = await Post.find({category: category});
+            
+        } else { 
+            posts = await Post.find({username: user, category: category});
+            
         }
+        
         res.status(200).json(posts);
     } catch(err) {
         res.status(500).json(err);

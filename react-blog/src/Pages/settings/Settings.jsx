@@ -22,9 +22,16 @@ export default function Settings() {
 
       useEffect(() =>{
         const fetchUser = async ()=> {
-          const res = await axios.get("/user/user_info")
-          if(res.status === 200) {
-            setUser(res.data.user)
+          try {
+            const res = await axios.get("/user/user_info");
+            if (res.status === 200) {
+              setUser(res.data.user);
+            } else {
+              navigate("/login");
+            }
+          } catch (err) {
+            console.error("Error while fetching user:", err);
+            navigate("/login");
           }
         }
         fetchUser();
@@ -84,7 +91,21 @@ export default function Settings() {
         }
       }
       
-
+      const handleDelete = async (e) => {
+        if(!user) {
+          navigate("/login")
+        } else {
+          try{
+            //console.log(user._id);
+            const res = await axios.delete("/user/" +  dynamicParam);
+            if(res === 200)
+             navigate("/register");
+          } catch(err) {
+            console.log("error in deleting");
+          }
+          
+        }
+      }
   return (
     <div>
     <Topbar />
@@ -114,7 +135,7 @@ export default function Settings() {
             </div>
             <button type = "submit" className = "settingsSubmit">Save</button>
         </form>
-        <div className='delete-div'>Delete account</div>
+        <div className='delete-div' onClick={handleDelete}>Delete account</div>
     </div>
     
     </div>

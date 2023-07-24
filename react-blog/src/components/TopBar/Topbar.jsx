@@ -5,7 +5,8 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link
+    Link,
+    useNavigate
   } from 'react-router-dom';
 
 function Topbar() {
@@ -13,8 +14,15 @@ function Topbar() {
   const [profileImg, setProfImg] = useState("https://cdn-icons-png.flaticon.com/512/1144/1144760.png")
   const [isExpanded, setIsExpanded] = useState(false);
   const PF = "http://localhost:8000/Images/"
+  const navigate = useNavigate();
   const toggleList = () => {
     setIsExpanded(!isExpanded);
+  };
+
+  const handleLogout = async(e) => {
+    setUser(null);
+    const res = await axios.post("/auth/logout");
+    navigate("/login");
   };
   
   useEffect(() =>{
@@ -64,8 +72,8 @@ function Topbar() {
           <div className="dropdown-menu">
           <ul>
             <li><Link to={`/settings/${user._id}`} className='link-style'> Settings</Link></li>
-            <li>My Posts</li>
-            <li>Logout</li>
+            <li><Link to={`/myposts`} className='link-style'>My Posts</Link></li>
+            <li onClick={handleLogout}>Logout</li>
           </ul> 
           </div>
           )}

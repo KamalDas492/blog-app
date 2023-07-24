@@ -41,11 +41,12 @@ router.put("/:id", async (req, res) => {
 
 //Delete account
 router.delete("/:id", async (req, res) => {
-    if(req.body.userId === req.params.id) {
+    
         try {
             const user = await User.findById(req.params.id);
             try {
                 await User.findByIdAndDelete(req.params.id)
+                res.clearCookie('token').json({ message: 'Logout successful.' });
                 res.status(200).json("Your account has been deleted");
             } catch(err) {
                 res.status(500).json(err);
@@ -54,9 +55,7 @@ router.delete("/:id", async (req, res) => {
             res.status(404).json("User not found!")
         }
         
-    } else {
-        res.status(401).json("You can delete only your account");
-    }
+   
 })
 
 module.exports = router

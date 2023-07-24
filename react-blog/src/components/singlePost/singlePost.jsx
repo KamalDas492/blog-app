@@ -3,10 +3,11 @@ import "./singlePost.css"
 import { useLocation, Link } from 'react-router-dom'
 import axios from "axios"
 import Topbar from '../TopBar/Topbar';
+
 export default function SinglePost() {
   const postPath = useLocation();
   const id = postPath.pathname.split("/")[2];
-
+  const [isLoading, setIsLoading] = useState(true);
   const [post, setPost] = useState({});
 
   useEffect(() =>{
@@ -15,6 +16,9 @@ export default function SinglePost() {
       setPost(res.data);
     }
     getPost();
+    setTimeout(() => {
+      setIsLoading(false); // Set loading state to false to render the content
+    }, 600);
   }, [id])
 
   const linkStyle = {
@@ -23,10 +27,11 @@ export default function SinglePost() {
   };
   const PF = "http://localhost:8000/Images/"
   return (
-    <div>
+    <div className='Single-Post'>
       <Topbar />
     
     <div className='singlePost'>
+    {isLoading ? <div className='loader-singlepost'><div className="loading-spinner"></div></div> :
       <div className='singlePostWrapper'>
         {post.photo && 
           <img
@@ -50,7 +55,7 @@ export default function SinglePost() {
           <p className='PostDesc'>
           {post.description}
           </p>
-      </div>
+      </div>}
     </div>
     </div>
   )

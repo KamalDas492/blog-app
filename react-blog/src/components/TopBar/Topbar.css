@@ -92,7 +92,7 @@
 }
 .account{
     flex:6;
-
+    cursor: pointer;
 }
 .cart{
     text-align: center;
