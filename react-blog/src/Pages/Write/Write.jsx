@@ -2,30 +2,47 @@ import React, { useState, useEffect } from 'react'
 import "./Write.css"
 import ImageInput from '../../components/ImageInput/ImageInput'
 import axios from "axios"
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Topbar from '../../components/TopBar/Topbar'
 
 
-export default function Write() {
+export default function Write(props) {
   const [title, setTitle] = useState("")
   const [desc, setDesc] = useState("")
   const [file, setFile] = useState(null)
   const [cat, setCategory] = useState(null)
   const [user, setUser] = useState(null)
   const navigate = useNavigate();
-
+  const postPath = useLocation();
+  const postId = postPath.pathname.split("/")[2];
+  const [postDetails, setPostDetails] = useState({});
+  const {obj} = props;
   useEffect(() =>{
     const fetchUser = async ()=> {
-      //console.log("request");
       const res = await axios.get("/user/user_info")
-      
       if(res.status === 200) {
         setUser(res.data.user)
-        //console.log(res.data.user);
       }
     }
     fetchUser();
   },[])
+
+  useEffect(() =>{
+    if(obj === "editPost") {
+      const getPostDetail = async ()=> {
+        const res = await axios.get("/posts/" + postId);
+        if(res.status === 200){
+          setPostDetails(res.data);
+          setTitle(res.data.title);
+          setCategory(res.data.category);
+          setDesc(res.data.description);
+        }
+         
+      }
+      getPostDetail();
+    }
+    
+  }, [postId])
   
   const handleImageChange = (image) => {
     setFile(image);
@@ -67,22 +84,34 @@ export default function Write() {
           console.log("error in uploading image");
         }
       }
-      try{
-        console.log(newPost);
-        const res = await axios.post("/posts", newPost);
-        navigate("/posts/" + res.data._id);
-      } catch(err) {
-        console.log("error in posting");
+      if(obj === "newPost") {
+        try{
+          const res = await axios.post("/posts", newPost);
+          navigate("/posts/" + res.data._id);
+        } catch(err) {
+          console.log("error in posting");
+        }
+      } else {
+        try{
+          const resp = await axios.put("/posts/" + postId, newPost);
+          if(resp.status === 200)
+           navigate("/posts/" + postId);
+        } catch(err) {
+          console.log("error in updating");
+        }
       }
-      
+        
+      } 
     }
-  }
   return (
     <div>
     <Topbar />
     <div className='write'>
+    
         <form className='writeForm' onSubmit={handleSubmit}>
         <ImageInput onImageChange={handleImageChange} />
+        {obj === "newPost" &&
+          <div>
             <div className='writeFormGroup'>
                 <input type="text" placeholder='Title' className='writeInput' autoFocus={true} onChange={e=>setTitle(e.target.value)}></input>
                 <input type="text" placeholder='Category' className='writeInput' onChange={e=>setCategory(e.target.value)}></input>
@@ -96,6 +125,26 @@ export default function Write() {
               ></textarea>
             </div>
             <button type = "submit" className = "writeSubmit">Publish</button>
+            </div> 
+        }
+        {obj === "editPost" && 
+        <div>
+            <div className='writeFormGroup'>
+                <input type="text" placeholder='Title' defaultValue = {postDetails.title} className='writeInput' autoFocus={true} onChange={e=>setTitle(e.target.value)}></input>
+                <input type="text" placeholder='Category' defaultValue = {postDetails.category} className='writeInput' onChange={e=>setCategory(e.target.value)}></input>
+            </div>
+            <div className='writeFormGroup'>
+              <textarea 
+                placeholder='Tell your story..'
+                className='writeInput writeText'
+                type="text"
+                defaultValue = {postDetails.description}
+                onChange={e=>setDesc(e.target.value)}
+              ></textarea>
+            </div>
+            <button type = "submit" className = "writeSubmit">Publish</button>
+            </div> 
+        }
         </form>
     </div>
     </div>

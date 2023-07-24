@@ -25,7 +25,8 @@ function App() {
         <Route  path='/login' element={<Login />}></Route>
         <Route  path='/settings/:id' element={<Settings />}></Route>
         <Route  path='/myposts' element={<MyPosts />}></Route>
-        <Route  path='/write' element={<Write />}></Route>
+        <Route  path='/write' element={<Write obj = "newPost"/>}></Route>
+        <Route  path='/editpost/:id' element={<Write obj = "editPost"/>}></Route>
         <Route  path='/posts/:id' element={<Single />}></Route>
       </Routes>
       
