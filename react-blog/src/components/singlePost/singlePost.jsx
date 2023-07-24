@@ -29,7 +29,7 @@ export default function SinglePost() {
     }
     getPost();
     setTimeout(() => {
-      setIsLoading(false); // Set loading state to false to render the content
+      setIsLoading(false); 
     }, 600);
   }, [id])
 
