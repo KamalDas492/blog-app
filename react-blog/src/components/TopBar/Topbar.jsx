@@ -1,15 +1,50 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from "axios"
 import "./Topbar.css"
 import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link
+    Link,
+    useNavigate
   } from 'react-router-dom';
 
 function Topbar() {
-  //const { user } = useContext(UserContext);
-  const user = null;
+  const [user, setUser] = useState(null)
+  const [profileImg, setProfImg] = useState("https://cdn-icons-png.flaticon.com/512/1144/1144760.png")
+  const [isExpanded, setIsExpanded] = useState(false);
+  const PF = "http://localhost:8000/Images/"
+  const navigate = useNavigate();
+  const toggleList = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const handleLogout = async(e) => {
+    setUser(null);
+    const res = await axios.post("/auth/logout");
+    navigate("/login");
+  };
+  
+  useEffect(() =>{
+    const fetchUser = async ()=> {
+      //console.log("request");
+      const res = await axios.get("/user/user_info")
+      
+      if(res.status === 200) {
+        setUser(res.data.user)
+        //console.log(res.data.user);
+        
+      }
+    }
+    fetchUser();
+  },[])
+  useEffect(() => {
+    if (user && user.profilePic !== "") {
+      setProfImg(PF + user.profilePic);
+    }
+  }, [user]);
+  
+
     return (
         <div className='navcontainer'>
       <div className='wrapper-css'>
@@ -29,11 +64,21 @@ function Topbar() {
       
       <div className='account-area'>
         {user && 
-          <div className='account'>
+          (<div className='account'>
             <span><i className="acc-icons fa fa-user-o" aria-hidden="true"></i>
             </span>
-            <img className="topImg" src = "https://m.cricbuzz.com/a/img/v1/192x192/i1/c244980/virat-kohli.jpg" alt="Profile"/>
+            <img className="topImg" onClick={toggleList} src = {profileImg} alt="Profile"/>
+            {isExpanded && (
+          <div className="dropdown-menu">
+          <ul>
+            <li><Link to={`/settings/${user._id}`} className='link-style'> Settings</Link></li>
+            <li><Link to={`/myposts`} className='link-style'>My Posts</Link></li>
+            <li onClick={handleLogout}>Logout</li>
+          </ul> 
+          </div>
+          )}
           </div>  
+          )
         }  
         {!user && <Link to = "/login" className="link-style"><span className = "loginbtn">Login</span></Link>}
       </div>

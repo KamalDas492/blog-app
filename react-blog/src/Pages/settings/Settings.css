@@ -1,6 +1,4 @@
-.settings{
-    display: flex;
-}
+
 .settingsWrapper {
     flex: 9;
     padding-top: 100px;
@@ -9,42 +7,14 @@
 #FileInput{
     display: none;
 }
-.settingsForm {
-    display: flex;
-    flex-direction:column;
-    
-}
-.settingsForm > input{
-    background-color: #f4f4f4;
-    border: 2px solid #ccc;
-    padding:12px 10px;
-    width:22%;
-    border-radius:25px;
-    display: block;
-    font-family: 'Varela Round', sans-serif;
-    outline: none;
-    color:#444;
-    margin: auto;
-    margin-top: 10px;
-    
-}
+
+
 .settingsForm > label {
     font-size: 20px;
     margin-bottom: 5px;
     
 }
-.settingsSubmit{
-    width:100px;
-    align-self: center;
-    padding: 8px 12px;
-    border-radius: 20px;
-    border: none;
-    background-color: #444;
-    color: white;
-    cursor: pointer;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+
 .settingsPP{
     display: flex;
     flex-direction: column;
@@ -55,7 +25,7 @@
     color: #444;
     font-size: 100px;
     border-radius: 50px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 .settingsPP > label {
     display: flex;
@@ -64,19 +34,74 @@
     font-family: 'Varela Round', sans-serif;
     cursor: pointer;
 }
-.settingsTitleDelete{
-    color:#CF0A0A;
-    display: block;
-    position: absolute;
-    left:60%;
-    font-family: 'Varela Round', sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-}
 
-  
   .image-container img {
     height: 100px;
     width: 100px;
     border-radius: 60px;
   }
+
+  #fileInput{
+    display: none;
+}
+.settings{
+    padding-top: 30px;
+    
+}
+.settingsIcon{
+    font-size: 25px;
+    margin-right: 10px;
+    color: gray;
+}
+.settingsFormGroup{
+    width: 60%;
+    margin: auto;
+}
+
+.settingsInput{
+    font-size: 20px;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 15px;
+    width:100%;
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+}
+.settingsInput:focus{
+    outline: none;
+    background-color: aliceblue;
+}
+.settingsForm{
+    width: 76vw;
+    margin: auto;
+}
+.settingsText{
+    font-size: 20px;
+    height:30vh;
+    width: 100%;
+}
+.settingsSubmit{
+    margin: auto;
+    margin-top: 20px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 44px;
+    display: block;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+.delete-div{
+    color: red;
+    width: fit-content;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+
+

@@ -6,13 +6,23 @@ export default function Post({post}) {
     textDecoration: 'none',
     color: 'inherit',
   };
+  const PF = "http://localhost:8000/Images/"
   return (
     <div className = "post">
+        {!post.photo &&
+          <img 
+            className="postImg"
+            src =  "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"
+            alt = "post_img"
+          />
+        }
+        {post.photo && 
         <img 
             className="postImg"
-            src = {!post.photo && "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"}
+            src = {PF + post.photo}
             alt = "post_img"
         />
+        }
         <div className="postInfo">
                 {post.category && <div className="postCat">
                 <div className = "postCatWrap">{post.category}</div>

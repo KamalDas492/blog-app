@@ -23,10 +23,9 @@ router.post("/register", async (req, res) => {
             password: hashedPassword
         })
         const user = await newUser.save();
-        const token = createSecretToken(user._id, user.username);
+        const token = createSecretToken(user._id);
         res.cookie("token", token, {
-            withCredentials: true,
-            httpOnly: false,
+            httpOnly: true,
         });
         return res.status(200).json("Success");
     } catch(err) {
@@ -51,11 +50,10 @@ router.post("/login", async (req, res) => {
             return res.status(200).json("Wrong credentials");
         } 
 
-        const token = createSecretToken(user._id, user.username);
+        const token = createSecretToken(user._id);
         res.cookie("token", token, {
-            withCredentials: true,
-            httpOnly: false,
-        });
+           httpOnly: true,
+       });
         return res.status(200).json("Success");
     } catch(err) {
         res.status(500).json(err);
@@ -65,8 +63,7 @@ router.post("/login", async (req, res) => {
 /// Logout 
 
 router.post('/logout', (req, res) => {
-    req.session.destroy();
-    res.status(200).json({message:"Logged out succesfully"});
+    res.clearCookie('token').json({ message: 'Logout successful.' });
 });
 
 

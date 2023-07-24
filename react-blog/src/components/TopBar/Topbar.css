@@ -92,7 +92,7 @@
 }
 .account{
     flex:6;
-
+    cursor: pointer;
 }
 .cart{
     text-align: center;
@@ -107,6 +107,23 @@
    
     cursor: pointer;
 }
+.dropdown-menu {
+    position: absolute;
+    padding: 15px 16px 5px;
+    background-color: #f4f4f4;
+    text-align: left;
+    width: 6.5vw;
+    font-size: 17px;
+  }
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+}
+.dropdown-menu li{
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+  
 @media only screen and (max-width: 1080px) {
     .navcontainer{
         height:140px;
