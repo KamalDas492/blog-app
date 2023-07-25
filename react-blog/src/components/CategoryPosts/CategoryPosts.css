@@ -1,0 +1,35 @@
+.myPosts{
+    margin-top: 25px;
+    text-align: center;
+}
+.no_post{
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 6rem;
+    color:#EEEEEE;
+}
+.loader{
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    width: fit-content;
+    margin: auto;
+}
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-top: 4px solid black; 
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

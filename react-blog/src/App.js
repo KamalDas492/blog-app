@@ -1,6 +1,6 @@
 
 import Home from "./Pages/Home/Home.jsx";
-
+import CategoryPosts from "./components/CategoryPosts/CategoryPosts.jsx";
 import Single from "./Pages/single/Single.jsx"
 import Write from "./Pages/Write/Write.jsx";
 import Settings from "./Pages/settings/Settings.jsx";
@@ -18,7 +18,6 @@ function App() {
  
   return (
     <Router>
-      
       <Routes>
         <Route exact path='/' element={<Home />}></Route>
         <Route  path='/register' element={<Register />}></Route>
@@ -28,6 +27,7 @@ function App() {
         <Route  path='/write' element={<Write obj = "newPost"/>}></Route>
         <Route  path='/editpost/:id' element={<Write obj = "editPost"/>}></Route>
         <Route  path='/posts/:id' element={<Single />}></Route>
+        <Route  path='/category/:cat' element={<CategoryPosts />}></Route>
       </Routes>
       
     </Router>
