@@ -81,7 +81,6 @@ export default function Settings() {
           }
           
           try{
-            console.log(dynamicParam);
             const res = await axios.put("/user/" +  dynamicParam, updateUser);
             navigate("/");
           } catch(err) {
@@ -98,7 +97,7 @@ export default function Settings() {
           try{
             //console.log(user._id);
             const res = await axios.delete("/user/" +  dynamicParam);
-            if(res === 200)
+            if(res.status === 200)
              navigate("/register");
           } catch(err) {
             console.log("error in deleting");

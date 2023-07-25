@@ -41,16 +41,14 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
-        if(post.username === req.body.username) {
+        
             try {
                 await Post.findByIdAndDelete(req.params.id);
                 res.status(200).json("Post has been deleted");
             } catch(err) {
                 res.status(500).json(err);
             }
-        } else {
-            res.status(401).json("You can delete only your post");
-        }
+        
     } catch(err) {
         res.status(500).json(err);
     }
@@ -69,10 +67,11 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
     const user = req.query.user;
     const category = req.query.cat;
+    const search = req.query.search;
     
     try {
         let posts;
-        if(user === undefined && category === undefined) {
+        if(search === undefined && user === undefined && category === undefined) {
             posts = await Post.find();
             
         } else if(user !== undefined && category === undefined) {
@@ -81,6 +80,13 @@ router.get("/", async (req, res) => {
         } else if(category !== undefined && user === undefined) {
             posts = await Post.find({category: category});
             
+        } else if(search !== undefined && user === undefined && category === undefined) {
+            posts = await Post.find({
+                $or: [
+                  { title: { $regex: search, $options: 'i' } },
+                  { description: { $regex: search, $options: 'i' } },
+                ],
+              });
         } else { 
             posts = await Post.find({username: user, category: category});
             
@@ -91,5 +97,7 @@ router.get("/", async (req, res) => {
         res.status(500).json(err);
     }
 })
+
+
 
 module.exports = router

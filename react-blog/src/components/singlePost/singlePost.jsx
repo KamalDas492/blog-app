@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./singlePost.css"
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import Topbar from '../TopBar/Topbar';
 
@@ -9,6 +9,18 @@ export default function SinglePost() {
   const id = postPath.pathname.split("/")[2];
   const [isLoading, setIsLoading] = useState(true);
   const [post, setPost] = useState({});
+  const [user, setUser] = useState(null)
+  const navigate = useNavigate();
+
+  useEffect(() =>{
+    const fetchUser = async ()=> {
+      const res = await axios.get("/user/user_info")
+      if(res.status === 200) {
+        setUser(res.data.user)
+      }
+    }
+    fetchUser();
+  },[])
 
   useEffect(() =>{
     const getPost = async ()=> {
@@ -17,9 +29,24 @@ export default function SinglePost() {
     }
     getPost();
     setTimeout(() => {
-      setIsLoading(false); // Set loading state to false to render the content
+      setIsLoading(false); 
     }, 600);
   }, [id])
+
+  const handleDelete = async (e) => {
+    if(!user) {
+      navigate("/login")
+    } else {
+      try{
+        const res = await axios.delete("/posts/" +  post._id);
+        if(res.status === 200)
+         navigate("/myposts");
+      } catch(err) {
+        console.log("error in deleting");
+      }
+      
+    }
+  }
 
   const linkStyle = {
     textDecoration: 'none',
@@ -43,10 +70,12 @@ export default function SinglePost() {
           
           <h1 className='singlePostTitle'>
             {post.title}
+            {user && post.username === user.username && 
             <div className='singlePostEdit'>
-              <i className = "singlePostIcon fa-solid fa-pen-to-square"></i>
-              <i className="singlePostIcon fa-solid fa-trash"></i>
+            <Link  to={`/editpost/${post._id}`} style={linkStyle}><i className = "singlePostIcon fa-solid fa-pen-to-square"></i></Link>
+              <i className="singlePostIcon fa-solid fa-trash" onClick={handleDelete}></i>
             </div>
+            }
           </h1>
           <div className='singlePostInfo'>
             <span className = "singlePostAuthor">Author: <Link  to={`/?user=${post.username}`} style={linkStyle}><b>{post.username}</b> </Link></span>

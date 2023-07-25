@@ -25,7 +25,7 @@ export default function Post({post}) {
         }
         <div className="postInfo">
                 {post.category && <div className="postCat">
-                <div className = "postCatWrap">{post.category}</div>
+                <Link to={`/category/${post.category}`} className='link-style'><div className = "postCatWrap">{post.category}</div></Link>
                 </div> }
                 <div className="postDate">{new Date(post.createdAt).toDateString()}</div>
         </div>

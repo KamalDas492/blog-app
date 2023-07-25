@@ -7,6 +7,7 @@ const userRoute = require("./routes/users");
 const postsRoute = require("./routes/posts");
 const catRoute = require("./routes/category");
 const userDetailRoute = require("./util/getUser")
+const SubscriberRoute = require("./routes/subscribe")
 const multer = require("multer")
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -45,6 +46,7 @@ app.use("/blog/user", userRoute)
 app.use("/blog/posts", postsRoute) 
 app.use("/blog/category", catRoute) 
 app.use("/blog/api", userDetailRoute) 
+app.use("/blog/subscribe", SubscriberRoute)
 
 app.use(cookieParser());
 
