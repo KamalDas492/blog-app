@@ -10,6 +10,11 @@ export default function Footer() {
       const res = await axios.post("/subscribe", {
         email: email
       })
+      if(res.status == 200) {
+        alert("You are subscribed");
+      } else {
+        alert("Something went wrong!")
+      }
       
     }
     

@@ -6,6 +6,7 @@ import Write from "./Pages/Write/Write.jsx";
 import Settings from "./Pages/settings/Settings.jsx";
 import Login from "./Pages/Login/Login.jsx";
 import Register from "./Pages/Register/Register.jsx";
+import SearchPosts from "./components/SearchPosts/SearchPosts.jsx"
 import {
   BrowserRouter as Router,
   Routes,
@@ -28,6 +29,7 @@ function App() {
         <Route  path='/editpost/:id' element={<Write obj = "editPost"/>}></Route>
         <Route  path='/posts/:id' element={<Single />}></Route>
         <Route  path='/category/:cat' element={<CategoryPosts />}></Route>
+        <Route  path='/posts/search' element={<SearchPosts />}></Route>
       </Routes>
       
     </Router>
