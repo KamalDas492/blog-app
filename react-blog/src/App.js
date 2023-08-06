@@ -7,11 +7,11 @@ import Settings from "./Pages/settings/Settings.jsx";
 import Login from "./Pages/Login/Login.jsx";
 import Register from "./Pages/Register/Register.jsx";
 import SearchPosts from "./components/SearchPosts/SearchPosts.jsx"
+import NotFound from "./Pages/NotFound/NotFound.jsx";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 import MyPosts from "./components/MyPosts/MyPosts.jsx";
 
@@ -30,6 +30,7 @@ function App() {
         <Route  path='/posts/:id' element={<Single />}></Route>
         <Route  path='/category/:cat' element={<CategoryPosts />}></Route>
         <Route  path='/posts/search' element={<SearchPosts />}></Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       
     </Router>

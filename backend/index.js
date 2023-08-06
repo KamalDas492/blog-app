@@ -12,6 +12,7 @@ const multer = require("multer")
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const path = require("path");
+const PORT = process.env.PORT || 8000
 
 
 dotenv.config();
@@ -66,6 +67,6 @@ app.use((req, res, next) => {
 app.use(allowCrossDomain);
 
 
-app.listen("8000", () => {
+app.listen(PORT, () => {
     console.log("Server is running");
 })

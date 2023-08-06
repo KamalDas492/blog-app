@@ -24,13 +24,21 @@ export default function SinglePost() {
 
   useEffect(() =>{
     const getPost = async ()=> {
+      try {
       const res = await axios.get("/posts/" + id);
-      setPost(res.data);
+      if(res.status === 200) {
+        setPost(res.data);
+      } 
+    } catch(err) {
+      console.log(err);
+      navigate("/PageNotFound");
+    }
+      
     }
     getPost();
     setTimeout(() => {
       setIsLoading(false); 
-    }, 600);
+    }, 1000);
   }, [id])
 
   const handleDelete = async (e) => {
