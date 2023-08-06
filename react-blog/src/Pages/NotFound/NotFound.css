@@ -1,0 +1,23 @@
+.notFound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.notFoundImage{
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+.notFoundImage img {
+    max-width: 84%;
+    height: auto;
+}
+.notFoundText{
+    flex: 1;
+    padding: 20px;
+}
+.notFoundText h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}

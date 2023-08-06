@@ -3,7 +3,6 @@ import Header from '../../components/Header/Header'
 import Post from '../../components/Posts/Posts'
 import "./Home.css"
 import axios from "axios"
-import { useLocation } from 'react-router-dom'
 import Footer from "../../components/Footer/Footer";
 import Topbar from '../../components/TopBar/Topbar'
 

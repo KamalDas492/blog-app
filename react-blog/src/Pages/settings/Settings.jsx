@@ -25,6 +25,9 @@ export default function Settings() {
           try {
             const res = await axios.get("/user/user_info");
             if (res.status === 200) {
+              if(res.data.user._id !== dynamicParam) {
+                navigate(`/settings/${res.data.user._id}`);
+              }
               setUser(res.data.user);
             } else {
               navigate("/login");
@@ -35,7 +38,7 @@ export default function Settings() {
           }
         }
         fetchUser();
-      },[])
+      },[dynamicParam])
 
       const handleImageUpload = (event) => {
         const file = event.target.files[0];
@@ -81,7 +84,7 @@ export default function Settings() {
           }
           
           try{
-            const res = await axios.put("/user/" +  dynamicParam, updateUser);
+            await axios.put("/user/" +  dynamicParam, updateUser);
             navigate("/");
           } catch(err) {
             console.log("error in updating");

@@ -17,12 +17,20 @@ export default function Write(props) {
   const postId = postPath.pathname.split("/")[2];
   const [postDetails, setPostDetails] = useState({});
   const {obj} = props;
+
   useEffect(() =>{
     const fetchUser = async ()=> {
-      const res = await axios.get("/user/user_info")
-      if(res.status === 200) {
-        setUser(res.data.user)
-      }
+      try {
+            const res = await axios.get("/user/user_info");
+            if (res.status === 200) {
+              setUser(res.data.user);
+            } else {
+              navigate("/login");
+            }
+          } catch (err) {
+            console.error("Error while fetching user:", err);
+            navigate("/login");
+          }
     }
     fetchUser();
   },[])
