@@ -39,7 +39,7 @@ export default function SinglePost() {
     setTimeout(() => {
       setIsLoading(false); 
     }, 1000);
-  }, [id])
+  }, [id, navigate])
 
   const handleDelete = async (e) => {
     if(!user) {

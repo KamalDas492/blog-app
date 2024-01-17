@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react'
-import { UserContext } from '../../context/Context';
+import React, { useState} from 'react'
 import "./Register.css"
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,22 +13,28 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post("/auth/register", {
-      username,
-      email,
-      password
-    })
-    if(res.data === "Username not available" || res.data === "Email already registered") {
-      
-      setError(res.data);
+    try {
+      const res = await axios.post("/auth/register", {
+        username,
+        email,
+        password
+      })
+      if(res.data === "Username not available" || res.data === "Email already registered") {
         
-    } else if(res.data === "Success"){
-        
-        //login({username: username});
-        console.log("register success");
-        navigate('/');
-        setError("");
-    };
+        setError(res.data);
+          
+      } else if(res.data === "Success"){
+          
+          //login({username: username});
+          console.log("register success");
+          navigate('/');
+          setError("");
+      };
+    } catch(err) {
+      setError("Something went wrong");
+      console.log(err);
+    }
+    
   }
 
   return (

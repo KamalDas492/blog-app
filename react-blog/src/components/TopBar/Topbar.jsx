@@ -6,6 +6,7 @@ import {
   useNavigate
 } from 'react-router-dom';
 
+
 function Topbar() {
   const [user, setUser] = useState(null)
   const [profileImg, setProfImg] = useState("https://cdn-icons-png.flaticon.com/512/1144/1144760.png")
@@ -19,11 +20,9 @@ function Topbar() {
     setIsExpanded(!isExpanded);
   };
   const toggleCatList = async () => {
-
     if (!catExpanded) {
       try {
         const res = await axios.get("/category");
-
         const catData = res.data;
         let catArray = []
         for (let i = 0; i < catData.length; i++) {
@@ -42,7 +41,7 @@ function Topbar() {
   }
   const handleLogout = async (e) => {
     setUser(null);
-    const res = await axios.post("/auth/logout");
+    await axios.post("/auth/logout");
     navigate("/login");
   };
 

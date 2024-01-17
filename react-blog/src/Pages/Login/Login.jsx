@@ -1,5 +1,5 @@
 
-import React, { useState, useContext } from 'react'
+import React, { useState} from 'react'
 import "./Login.css"
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom';
@@ -12,22 +12,29 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post("/auth/login", {
-      identifier,
-      password
-    })
-    if(res.data === "Wrong credentials") {
-      
-      setError(res.data);
+    try {
+      const res = await axios.post("/auth/login", {
+        identifier,
+        password
+      })
+      if(res.data === "Wrong credentials") {
         
-    } else if(res.data === "Success"){
-        
-        //login({username: username});
-        console.log("login success");
-        navigate('/');
-        setError("");
-    };
+        setError(res.data);
+          
+      } else if(res.data === "Success"){
+          
+          //login({username: username});
+          console.log("login success");
+          navigate('/');
+          setError("");
+      };
+    } catch(err) {
+      setError("Something went wrong");
+      console.log(err);
+    }
+    
   }
+  
   return (
     <div className = "login">
     {error && <div className='errorStatement'>{error}</div>}

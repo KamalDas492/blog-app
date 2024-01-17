@@ -33,7 +33,7 @@ export default function Write(props) {
           }
     }
     fetchUser();
-  },[])
+  },[navigate])
 
   useEffect(() =>{
     if(obj === "editPost") {
@@ -50,7 +50,7 @@ export default function Write(props) {
       getPostDetail();
     }
     
-  }, [postId])
+  }, [postId, obj])
   
   const handleImageChange = (image) => {
     setFile(image);
@@ -71,6 +71,7 @@ export default function Write(props) {
           const resp = await axios.post("/category", {
             name: cat.toLowerCase()
           })
+          console.log(resp);
         } catch (err) {
           console.log(err);
         }

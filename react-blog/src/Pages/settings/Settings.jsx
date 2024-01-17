@@ -38,7 +38,7 @@ export default function Settings() {
           }
         }
         fetchUser();
-      },[dynamicParam])
+      },[dynamicParam, navigate])
 
       const handleImageUpload = (event) => {
         const file = event.target.files[0];
