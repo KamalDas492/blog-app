@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer'
 import Post from '../Posts/Posts'
 import axios from 'axios';
 import "./CategoryPosts.css"
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 
 
 

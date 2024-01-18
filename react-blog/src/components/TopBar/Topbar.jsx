@@ -5,6 +5,7 @@ import {
   Link,
   useNavigate
 } from 'react-router-dom';
+import backend_url from '../../Url';
 
 function Topbar() {
   const [user, setUser] = useState(null)
@@ -13,17 +14,15 @@ function Topbar() {
   const [catExpanded, setCatExpanded] = useState(false);
   const [categories, setCategories] = useState([]);
   const [query, setQuery] = useState("");
-  const PF = "http://localhost:8000/Images/"
+  const PF = backend_url + "/Images/"
   const navigate = useNavigate();
   const toggleList = () => {
     setIsExpanded(!isExpanded);
   };
   const toggleCatList = async () => {
-
     if (!catExpanded) {
       try {
         const res = await axios.get("/category");
-
         const catData = res.data;
         let catArray = []
         for (let i = 0; i < catData.length; i++) {
@@ -42,7 +41,7 @@ function Topbar() {
   }
   const handleLogout = async (e) => {
     setUser(null);
-    const res = await axios.post("/auth/logout");
+    await axios.post("/auth/logout");
     navigate("/login");
   };
 

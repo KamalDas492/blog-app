@@ -5,7 +5,7 @@ import Post from '../Posts/Posts'
 import axios from 'axios';
 import "./MyPosts.css"
 import { useNavigate } from 'react-router-dom';
-import { css } from '@emotion/react';
+
 
 
 function MyPosts() {
@@ -13,11 +13,6 @@ function MyPosts() {
     const [myposts, setMyPosts] = useState([]);
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
-    const override = css`
-      display: block;
-      margin: 0 auto;
-      border-color: black; /* Change the color as needed */
-    `;
     useEffect(() =>{
       const fetchUser = async ()=> {
         try {
@@ -33,7 +28,7 @@ function MyPosts() {
         }
       }
       fetchUser();
-    },[])
+    },[navigate])
     
     useEffect(() =>{
             const fetchMyPosts = async ()=> {

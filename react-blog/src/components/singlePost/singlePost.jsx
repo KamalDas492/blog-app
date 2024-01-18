@@ -3,6 +3,7 @@ import "./singlePost.css"
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import Topbar from '../TopBar/Topbar';
+import backend_url from '../../Url';
 
 export default function SinglePost() {
   const postPath = useLocation();
@@ -39,7 +40,7 @@ export default function SinglePost() {
     setTimeout(() => {
       setIsLoading(false); 
     }, 1000);
-  }, [id])
+  }, [id, navigate])
 
   const handleDelete = async (e) => {
     if(!user) {
@@ -60,7 +61,7 @@ export default function SinglePost() {
     textDecoration: 'none',
     color: 'inherit',
   };
-  const PF = "http://localhost:8000/Images/"
+  const PF = backend_url + "/Images/"
   return (
     <div className='Single-Post'>
       <Topbar />
