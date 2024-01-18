@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom"
 import "./Post.css"
+import backend_url from "../../Url";
 
 export default function Post({post}) {
   const linkStyle = {
     textDecoration: 'none',
     color: 'inherit',
   };
-  const PF = "http://localhost:8000/Images/"
+  const PF = backend_url + "/Images/"
   return (
     <div className = "post">
         {!post.photo &&

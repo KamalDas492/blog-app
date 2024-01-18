@@ -5,7 +5,7 @@ import {
   Link,
   useNavigate
 } from 'react-router-dom';
-
+import backend_url from '../../Url';
 
 function Topbar() {
   const [user, setUser] = useState(null)
@@ -14,7 +14,7 @@ function Topbar() {
   const [catExpanded, setCatExpanded] = useState(false);
   const [categories, setCategories] = useState([]);
   const [query, setQuery] = useState("");
-  const PF = "http://localhost:8000/Images/"
+  const PF = backend_url + "/Images/"
   const navigate = useNavigate();
   const toggleList = () => {
     setIsExpanded(!isExpanded);
