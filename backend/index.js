@@ -21,7 +21,7 @@ dotenv.config();
 app.use(express.json())
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://localhost:3000', // Specify your client's domain
+  origin: 'https://blog-diaries-9zhk.onrender.com', // Specify your client's domain
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow credentials (cookies)
   optionsSuccessStatus: 204, // Some browsers may return a 204 No Content status for OPTIONS requests
