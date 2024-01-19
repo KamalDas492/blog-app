@@ -27,12 +27,15 @@
 }
 .postTitle{
     font-family: 'Josefin Sans', sans-serif;
-    -webkit-line-clamp: 1;
     font-size: 22px;
     font-weight: 600;
     margin-top: 5px;
     cursor: pointer;
-    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 .postDate{
     font-family: 'Lora', serif;
