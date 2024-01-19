@@ -5,6 +5,7 @@ import axios from "axios"
 import { useLocation, useNavigate } from 'react-router-dom'
 import Topbar from '../../components/TopBar/Topbar'
 import {backend_url, frontend_url} from "../../Url"
+import { estimatedDocumentCount } from '../../../../backend/models/Users'
 
 export default function Write(props) {
   const [title, setTitle] = useState("")
@@ -39,14 +40,17 @@ export default function Write(props) {
   useEffect(() =>{
     if(obj === "editPost") {
       const getPostDetail = async ()=> {
-        const res = await axios.get(backend_url + "/blog/posts/" + postId);
-        if(res.status === 200){
-          setPostDetails(res.data);
-          setTitle(res.data.title);
-          setCategory(res.data.category);
-          setDesc(res.data.description);
+        try {
+          const res = await axios.get(backend_url + "/blog/posts/" + postId);
+          if(res.status === 200){
+            setPostDetails(res.data);
+            setTitle(res.data.title);
+            setCategory(res.data.category);
+            setDesc(res.data.description);
+          }
+        } catch(err) {
+          console.log("Error in retriveing post for edit");
         }
-         
       }
       getPostDetail();
     }

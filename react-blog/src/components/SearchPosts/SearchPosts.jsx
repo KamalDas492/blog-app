@@ -18,9 +18,13 @@ function SearchPosts() {
     
     useEffect(() =>{
             const fetchMyPosts = async ()=> {
-                const res = await axios.get(backend_url + "/blog/posts?search=" + queryValue)
-                setSearchPosts(res.data);
-                console.log(res.data);
+                try {
+                    const res = await axios.get(backend_url + "/blog/posts?search=" + queryValue)
+                    setSearchPosts(res.data);
+                    console.log(res.data);
+                }catch(err) {
+                    console.log("error in searching posts");
+                }
             }
             fetchMyPosts();
             setTimeout(() => {

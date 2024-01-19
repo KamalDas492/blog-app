@@ -7,14 +7,17 @@ export default function Footer() {
     const [email, setEmail] = useState();
     const handleSubmit = async (e) => {
       e.preventDefault();
-      
-      const res = await axios.post(backend_url + "/blog/subscribe", {
-        email: email
-      })
-      if(res.status === 200) {
-        alert("You are subscribed");
-      } else {
-        alert("Something went wrong!")
+      try {
+        const res = await axios.post(backend_url + "/blog/subscribe", {
+          email: email
+        })
+        if(res.status === 200) {
+          alert("You are subscribed");
+        } else {
+          alert("Something went wrong!")
+        }
+      }catch(err) {
+        console.log("error in subscribing");
       }
       
     }

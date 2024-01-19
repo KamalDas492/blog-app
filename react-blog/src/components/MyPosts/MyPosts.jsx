@@ -32,9 +32,13 @@ function MyPosts() {
     
     useEffect(() =>{
             const fetchMyPosts = async ()=> {
+              try {
                 const res = await axios.get(backend_url + "/blog/posts?user=" + user.username)
                 setMyPosts(res.data);
                 console.log(res.data);
+              }catch(err) {
+                console.log("Error in retrieving My posts...");
+              }
             }
             fetchMyPosts();
             setTimeout(() => {

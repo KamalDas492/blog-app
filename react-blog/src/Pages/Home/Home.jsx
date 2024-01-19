@@ -13,9 +13,15 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() =>{
+    
     const fetchPosts = async ()=> {
-      const res = await axios.get(backend_url + "/blog/posts")
-      setPosts(res.data);
+      try {
+        const res = await axios.get(backend_url + "/blog/posts")
+        setPosts(res.data);
+      } catch(err) {
+        console.log('Error in retrieving blog posts');
+      }
+      
     }
     fetchPosts();
     setTimeout(() => {

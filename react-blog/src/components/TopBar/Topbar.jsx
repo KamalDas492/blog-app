@@ -48,12 +48,14 @@ function Topbar() {
   useEffect(() => {
     const fetchUser = async () => {
       //console.log("request");
-      const res = await axios.get(backend_url + "/blog/user/user_info")
+      try {
+        const res = await axios.get(backend_url + "/blog/user/user_info")
 
-      if (res.status === 200) {
-        setUser(res.data.user)
-        //console.log(res.data.user);
-
+        if (res.status === 200) {
+          setUser(res.data.user)
+        }
+      } catch(err) {
+        console.log("Error in retrieving user info");
       }
     }
     fetchUser();
