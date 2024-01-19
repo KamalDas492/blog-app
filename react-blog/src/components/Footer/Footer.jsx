@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import "./Footer.css"
 import axios from "axios" 
+import {backend_url, frontend_url} from "../../Url"
 
 export default function Footer() {
     const [email, setEmail] = useState();
     const handleSubmit = async (e) => {
       e.preventDefault();
       
-      const res = await axios.post("/subscribe", {
+      const res = await axios.post(backend_url + "/blog/subscribe", {
         email: email
       })
       if(res.status === 200) {

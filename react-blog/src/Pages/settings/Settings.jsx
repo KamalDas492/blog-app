@@ -3,7 +3,7 @@ import "./Settings.css"
 import Topbar from "../../components/TopBar/Topbar"
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import {backend_url, frontend_url} from "../../Url"
 
 export default function Settings() {
  
@@ -23,7 +23,7 @@ export default function Settings() {
       useEffect(() =>{
         const fetchUser = async ()=> {
           try {
-            const res = await axios.get("/user/user_info");
+            const res = await axios.get(backend_url + "/blog/user/user_info");
             if (res.status === 200) {
               if(res.data.user._id !== dynamicParam) {
                 navigate(`/settings/${res.data.user._id}`);
@@ -77,14 +77,14 @@ export default function Settings() {
             
             updateUser.photo = filename;
             try {
-              await axios.post("/upload", data)
+              await axios.post(backend_url + "/blog/upload", data)
             } catch (err) {
               console.log("error in uploading image");
             }
           }
           
           try{
-            await axios.put("/user/" +  dynamicParam, updateUser);
+            await axios.put(backend_url + "/blog/user/" +  dynamicParam, updateUser);
             navigate("/");
           } catch(err) {
             console.log("error in updating");
@@ -99,7 +99,7 @@ export default function Settings() {
         } else {
           try{
             //console.log(user._id);
-            const res = await axios.delete("/user/" +  dynamicParam);
+            const res = await axios.delete(backend_url + "/blog/user/" +  dynamicParam);
             if(res.status === 200)
              navigate("/register");
           } catch(err) {

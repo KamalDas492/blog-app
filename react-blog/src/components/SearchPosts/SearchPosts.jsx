@@ -5,7 +5,7 @@ import Post from '../Posts/Posts'
 import axios from 'axios';
 import "./SearchPosts.css"
 import { useLocation} from 'react-router-dom';
-
+import {backend_url, frontend_url} from "../../Url"
 
 
 function SearchPosts() {
@@ -18,7 +18,7 @@ function SearchPosts() {
     
     useEffect(() =>{
             const fetchMyPosts = async ()=> {
-                const res = await axios.get("/posts?search=" + queryValue)
+                const res = await axios.get(backend_url + "/blog/posts?search=" + queryValue)
                 setSearchPosts(res.data);
                 console.log(res.data);
             }

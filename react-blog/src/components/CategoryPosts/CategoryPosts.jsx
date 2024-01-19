@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Topbar from '../TopBar/Topbar'
 import Footer from '../Footer/Footer'
 import Post from '../Posts/Posts'
-import axios from 'axios';
+import axios from "../../axiosConfigure";
 import "./CategoryPosts.css"
 import { useLocation} from 'react-router-dom';
-
+import {backend_url, frontend_url} from "../../Url"
 
 
 function CategoryPosts() {
@@ -17,7 +17,7 @@ function CategoryPosts() {
     
     useEffect(() =>{
             const fetchMyPosts = async ()=> {
-                const res = await axios.get("/posts?cat=" + dynamicParamCat)
+                const res = await axios.get(backend_url + "/blog/posts?cat=" + dynamicParamCat)
                 setCatPosts(res.data);
                 console.log(res.data);
             }

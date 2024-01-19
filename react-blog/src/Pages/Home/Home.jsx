@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header/Header'
 import Post from '../../components/Posts/Posts'
 import "./Home.css"
-import axios from "axios"
+import axios from "../../axiosConfigure"
 import Footer from "../../components/Footer/Footer";
 import Topbar from '../../components/TopBar/Topbar'
-
+import {backend_url, frontend_url} from "../../Url"
 
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
   
   useEffect(() =>{
     const fetchPosts = async ()=> {
-      const res = await axios.get("/posts")
+      const res = await axios.get(backend_url + "/blog/posts")
       setPosts(res.data);
     }
     fetchPosts();

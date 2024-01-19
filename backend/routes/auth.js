@@ -52,8 +52,8 @@ router.post("/login", async (req, res) => {
 
         const token = createSecretToken(user._id);
         res.cookie("token", token, {
-           httpOnly: true,
-       });
+            httpOnly: true,
+        });
         return res.status(200).json("Success");
     } catch(err) {
         res.status(500).json(err);

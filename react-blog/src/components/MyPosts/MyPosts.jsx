@@ -5,7 +5,7 @@ import Post from '../Posts/Posts'
 import axios from 'axios';
 import "./MyPosts.css"
 import { useNavigate } from 'react-router-dom';
-
+import {backend_url, frontend_url} from "../../Url"
 
 
 function MyPosts() {
@@ -16,7 +16,7 @@ function MyPosts() {
     useEffect(() =>{
       const fetchUser = async ()=> {
         try {
-          const res = await axios.get("/user/user_info");
+          const res = await axios.get(backend_url + "/blog/user/user_info");
           if (res.status === 200) {
             setUser(res.data.user);
           } else {
@@ -32,7 +32,7 @@ function MyPosts() {
     
     useEffect(() =>{
             const fetchMyPosts = async ()=> {
-                const res = await axios.get("/posts?user=" + user.username)
+                const res = await axios.get(backend_url + "/blog/posts?user=" + user.username)
                 setMyPosts(res.data);
                 console.log(res.data);
             }

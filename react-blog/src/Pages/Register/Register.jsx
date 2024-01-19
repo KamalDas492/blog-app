@@ -2,6 +2,7 @@ import React, { useState} from 'react'
 import "./Register.css"
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom';
+import {backend_url, frontend_url} from "../../Url"
 
 export default function Register() {
   
@@ -14,7 +15,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/auth/register", {
+      const res = await axios.post(backend_url + "/blog/auth/register", {
         username,
         email,
         password

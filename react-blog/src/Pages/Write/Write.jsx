@@ -4,7 +4,7 @@ import ImageInput from '../../components/ImageInput/ImageInput'
 import axios from "axios"
 import { useLocation, useNavigate } from 'react-router-dom'
 import Topbar from '../../components/TopBar/Topbar'
-
+import {backend_url, frontend_url} from "../../Url"
 
 export default function Write(props) {
   const [title, setTitle] = useState("")
@@ -17,11 +17,12 @@ export default function Write(props) {
   const postId = postPath.pathname.split("/")[2];
   const [postDetails, setPostDetails] = useState({});
   const {obj} = props;
+ 
 
   useEffect(() =>{
     const fetchUser = async ()=> {
       try {
-            const res = await axios.get("/user/user_info");
+            const res = await axios.get(backend_url + "/blog/user/user_info");
             if (res.status === 200) {
               setUser(res.data.user);
             } else {
@@ -38,7 +39,7 @@ export default function Write(props) {
   useEffect(() =>{
     if(obj === "editPost") {
       const getPostDetail = async ()=> {
-        const res = await axios.get("/posts/" + postId);
+        const res = await axios.get(backend_url + "/blog/posts/" + postId);
         if(res.status === 200){
           setPostDetails(res.data);
           setTitle(res.data.title);
@@ -68,7 +69,7 @@ export default function Write(props) {
       if(cat) {
         newPost.category = cat.toLowerCase();
         try {
-          const resp = await axios.post("/category", {
+          const resp = await axios.post(backend_url + "/blog/category", {
             name: cat.toLowerCase()
           })
           console.log(resp);
@@ -88,21 +89,21 @@ export default function Write(props) {
         
         newPost.photo = filename;
         try {
-          await axios.post("/upload", data)
+          await axios.post(backend_url + "/blog/upload", data)
         } catch (err) {
           console.log("error in uploading image");
         }
       }
       if(obj === "newPost") {
         try{
-          const res = await axios.post("/posts", newPost);
+          const res = await axios.post(backend_url + "/blog/posts", newPost);
           navigate("/posts/" + res.data._id);
         } catch(err) {
           console.log("error in posting");
         }
       } else {
         try{
-          const resp = await axios.put("/posts/" + postId, newPost);
+          const resp = await axios.put(backend_url + "/blog/posts/" + postId, newPost);
           if(resp.status === 200)
            navigate("/posts/" + postId);
         } catch(err) {

@@ -14,8 +14,19 @@ const path = require("path");
 const PORT = process.env.PORT || 8000
 const cors = require("cors");
 
+
+
+
 dotenv.config();
 app.use(express.json())
+app.use(cookieParser());
+app.use(cors({
+  origin: 'http://localhost:3000', // Specify your client's domain
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow credentials (cookies)
+  optionsSuccessStatus: 204, // Some browsers may return a 204 No Content status for OPTIONS requests
+}));
+
 app.use("/Images", express.static(path.join(__dirname, "/Images")))
 mongoose.connect(process.env.MONGO_URL)
 .then(console.log("Connected to MongoDB"))
@@ -41,6 +52,7 @@ app.post("/blog/upload", upload.single("img"), (req, res) => {
   res.status(200).json("File uploaded successfully");
 })
 
+
 app.use("/blog/auth", authRoute) 
 app.use("/blog/user", userRoute) 
 app.use("/blog/posts", postsRoute) 
@@ -49,25 +61,6 @@ app.use("/blog/api", userDetailRoute)
 app.use("/blog/subscribe", SubscriberRoute)
 
 
-app.use(cookieParser());
-
-
-
-const allowCrossDomain = function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', "http://localhost:3000");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-}
-app.use((req, res, next) => {
-  res.setHeader('Cache-Control', 'no-store');
-  next();
-});
-app.use(allowCrossDomain);
-
-
-  
-  
 
 app.listen(PORT, () => {
     console.log("Server is running");

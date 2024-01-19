@@ -15,7 +15,7 @@ export default function SinglePost() {
 
   useEffect(() =>{
     const fetchUser = async ()=> {
-      const res = await axios.get("/user/user_info")
+      const res = await axios.get(backend_url + "/blog/user/user_info")
       if(res.status === 200) {
         setUser(res.data.user)
       }
@@ -26,7 +26,7 @@ export default function SinglePost() {
   useEffect(() =>{
     const getPost = async ()=> {
       try {
-      const res = await axios.get("/posts/" + id);
+      const res = await axios.get(backend_url + "/blog/posts/" + id);
       if(res.status === 200) {
         setPost(res.data);
       } 
@@ -47,7 +47,7 @@ export default function SinglePost() {
       navigate("/login")
     } else {
       try{
-        const res = await axios.delete("/posts/" +  post._id);
+        const res = await axios.delete(backend_url + "/blog/posts/" +  post._id);
         if(res.status === 200)
          navigate("/myposts");
       } catch(err) {

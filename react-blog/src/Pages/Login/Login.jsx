@@ -3,6 +3,7 @@ import React, { useState} from 'react'
 import "./Login.css"
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom';
+import {backend_url, frontend_url} from "../../Url"
 
 export default function Login() {
   const [identifier, setIdentifier] = useState("");
@@ -13,7 +14,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/auth/login", {
+      const res = await axios.post(backend_url + "/blog/auth/login", {
         identifier,
         password
       })
@@ -25,6 +26,7 @@ export default function Login() {
           
           //login({username: username});
           console.log("login success");
+          console.log(res);
           navigate('/');
           setError("");
       };

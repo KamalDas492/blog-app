@@ -22,7 +22,7 @@ function Topbar() {
   const toggleCatList = async () => {
     if (!catExpanded) {
       try {
-        const res = await axios.get("/category");
+        const res = await axios.get(backend_url + "/blog/category");
         const catData = res.data;
         let catArray = []
         for (let i = 0; i < catData.length; i++) {
@@ -41,14 +41,14 @@ function Topbar() {
   }
   const handleLogout = async (e) => {
     setUser(null);
-    await axios.post("/auth/logout");
+    await axios.post(backend_url + "/blog/auth/logout");
     navigate("/login");
   };
 
   useEffect(() => {
     const fetchUser = async () => {
       //console.log("request");
-      const res = await axios.get("/user/user_info")
+      const res = await axios.get(backend_url + "/blog/user/user_info")
 
       if (res.status === 200) {
         setUser(res.data.user)
