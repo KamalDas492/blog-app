@@ -5,7 +5,7 @@ import {
   Link,
   useNavigate
 } from 'react-router-dom';
-import backend_url from '../../Url';
+import {backend_url, frontend_url} from "../../Url"
 
 function Topbar() {
   const [user, setUser] = useState(null)
@@ -67,7 +67,7 @@ function Topbar() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    window.location.href = "http://localhost:3000/posts/search?query=" + query;
+    window.location.href = frontend_url + "/posts/search?query=" + query;
   };
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import "./Post.css"
-import backend_url from "../../Url";
+import {backend_url, frontend_url} from "../../Url";
 
 export default function Post({post}) {
   const linkStyle = {

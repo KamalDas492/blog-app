@@ -3,7 +3,7 @@ import "./singlePost.css"
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import Topbar from '../TopBar/Topbar';
-import backend_url from '../../Url';
+import {backend_url, frontend_url} from "../../Url";
 
 export default function SinglePost() {
   const postPath = useLocation();
