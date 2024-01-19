@@ -36,8 +36,8 @@ function MyPosts() {
                 const res = await axios.get(backend_url + "/blog/posts?user=" + user.username)
                 setMyPosts(res.data);
                 console.log(res.data);
-              }catch(err) {
-                console.log("Error in retrieving My posts...");
+              } catch(err) {
+                console.log("Error in retrieving My posts...", err);
               }
             }
             fetchMyPosts();
