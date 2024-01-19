@@ -27,6 +27,7 @@
 }
 .postTitle{
     font-family: 'Josefin Sans', sans-serif;
+    -webkit-line-clamp: 1;
     font-size: 22px;
     font-weight: 600;
     margin-top: 5px;
@@ -81,6 +82,7 @@
     }
     .postTitle {
         font-size: 20px;
+        -webkit-line-clamp: 1;
     }
     .postDate{
         font-size: 12px;
