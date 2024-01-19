@@ -115,6 +115,7 @@
     }
     .postTitle {
         font-size: 15px;
+        -webkit-line-clamp: 1;
     }
     .postDate{
         font-size: 10px;
