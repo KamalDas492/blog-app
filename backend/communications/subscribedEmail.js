@@ -56,7 +56,7 @@ async function sendDailyEmails() {
     
         <!-- Right side (Title and Description) -->
         <div style="flex: 1;">
-        <a href=<%= "http://localhost:3000/posts/" + post._id  %> ><h2 style="font-size: 24px; margin-bottom: 10px;"><%= post.title %></h2></a>
+        <a href=<%= "https://blog-diaries-9zhk.onrender.com/posts/" + post._id  %> ><h2 style="font-size: 24px; margin-bottom: 10px;"><%= post.title %></h2></a>
             <p style="color: #666;"><%= shortenDescription(post.description) %></p>
         </div>
         </div>
@@ -109,9 +109,9 @@ async function sendDailyEmails() {
       });
     });
   }
-  cron.schedule('0 9 * * *', () => {
+  cron.schedule('0 15 * * *', () => {
   try {
-    console.log('Cron job triggered at 9:00 AM');
+    console.log('Cron job triggered at 3:00 PM');
     sendDailyEmails();
     
   } catch (error) {
