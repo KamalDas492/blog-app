@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const dotenv = require("dotenv");
 const Post = require("../models/Posts")
-const cron = require('node-cron');
+const cron = require('node-cron-tz');
 const Subscriber = require("../models/Subscriber")
 const ejs = require('ejs');
 const fs = require('fs');
@@ -109,7 +109,7 @@ async function sendDailyEmails() {
       });
     });
   }
-  cron.schedule('0 15 * * *', () => {
+  cron.schedule('20 15 * * *', () => {
   try {
     console.log('Cron job triggered at 3:00 PM');
     sendDailyEmails();
@@ -118,5 +118,5 @@ async function sendDailyEmails() {
     console.error('Error executing cron job:', error);
     
   }
-});
+}, { timezone: 'Asia/Kolkata' });
 
