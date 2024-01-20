@@ -109,9 +109,9 @@ async function sendDailyEmails() {
       });
     });
   }
-  cron.schedule('20 15 * * *', () => {
+  cron.schedule('0 9 * * *', () => {
   try {
-    console.log('Cron job triggered at 3:00 PM');
+    console.log('Cron job triggered at 9:00 AM');
     sendDailyEmails();
     
   } catch (error) {
