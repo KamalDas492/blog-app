@@ -26,18 +26,15 @@ const storage = multer.diskStorage({
         cb(null, 'Images'); 
       },
       filename: function (req, file, cb) {
-        //const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        //file.fieldname + '-' + uniqueSuffix + '.' + file.originalname.split('.').pop()
         cb(null, req.body.name);
       }
 })
 const upload = multer({storage: storage, limits: {
-  fieldNameSize: 100, // Adjust the maximum field name size
-  fieldSize: 1024 * 1024 * 10, // Adjust the maximum field data size (e.g., 5MB)
+  fieldNameSize: 100, 
+  fieldSize: 1024 * 1024 * 10, 
 },});
 
 app.post("/blog/upload", upload.single("img"), (req, res) => {
-  //const imagePath = path.join("../../../../backend/Images", req.file.filename);
   res.status(200).json("File uploaded successfully");
 })
 
