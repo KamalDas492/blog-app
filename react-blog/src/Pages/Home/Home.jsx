@@ -19,7 +19,7 @@ export default function Home() {
     }
     fetchPosts();
     setTimeout(() => {
-      setIsLoading(false); // Set loading state to false to render the content
+      setIsLoading(false); 
     }, 500);
   }, [])
   
