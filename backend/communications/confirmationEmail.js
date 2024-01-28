@@ -3,9 +3,9 @@ const dotenv = require("dotenv");
 
 async function sendThanksEmail(email) {
     try {
-      // Set up the email transporter
+      
       const transporter = nodemailer.createTransport({
-        service: 'gmail', // e.g., Gmail, Outlook, etc.
+        service: 'gmail', 
         host: "smtp.gmail.com",
         port: 587,
         secure: false,
@@ -92,7 +92,7 @@ async function sendThanksEmail(email) {
         
       };
       console.log("trying to send mail");
-      // Send the "thanks" email
+     
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           console.log(`Error sending "thanks" email to ${email}: ${error.message}`);
