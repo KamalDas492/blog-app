@@ -38,7 +38,7 @@ function MyPosts() {
             }
             fetchMyPosts();
             setTimeout(() => {
-              setIsLoading(false); // Set loading state to false to render the content
+              setIsLoading(false); 
             }, 1000);
     }, [user])
 
