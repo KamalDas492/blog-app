@@ -74,13 +74,13 @@ async function sendDailyEmails() {
         return description;
       }
     
-      // Add the helper function to the template scope
+      
       const compiledTemplate = ejs.compile(emailTemplate);
       const htmlContent = compiledTemplate({ posts, shortenDescription });
     //const htmlContent = ejs.render(emailTemplate, { posts });
-    // Set up the email transporter
+    
     const transporter = nodemailer.createTransport({
-        service: 'gmail', // e.g., Gmail, Outlook, etc.
+        service: 'gmail', 
         host: "smtp.gmail.com",
         port: 587,
         secure: false,
@@ -96,7 +96,7 @@ async function sendDailyEmails() {
       html: htmlContent,
     };
   
-    // Send emails to all subscribers
+    
     subscribers.forEach((subscriber) => {
       mailOptions.to = subscriber.email;
   
