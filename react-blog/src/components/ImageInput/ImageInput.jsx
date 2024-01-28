@@ -21,7 +21,7 @@ const ImageInput = ({ onImageChange }) => {
 
   const handleImageFile = (file) => {
     setBackgroundImage(URL.createObjectURL(file));
-    onImageChange(file); // Pass the File object to the parent component
+    onImageChange(file); 
     setElementVisible(false);
     document.getElementById('square-area').style.border = 'none';
   };
