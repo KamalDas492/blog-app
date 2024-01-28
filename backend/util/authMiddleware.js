@@ -12,7 +12,6 @@ const authMiddleware = (req, res, next) => {
   
   
   try {
-    // Verify and decode the token
     const cookie_string = req.headers.cookie
     const token = cookie_string.split("=")[1];
     const decoded = jwt.verify(token, process.env.TOKEN_KEY);
